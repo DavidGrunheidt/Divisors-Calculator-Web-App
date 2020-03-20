@@ -7,7 +7,6 @@ import './App.css';
 
 class App extends Component {
   state = {
-    reqResponse: undefined,
     numberValue: undefined,
     results: [],
     waitingResp: false
