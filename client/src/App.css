@@ -38,14 +38,19 @@
   font-family: "Monospace";
 }
 
-.App-intro {
+.respInfos {
   margin-block-start: 1em;
-  margin-block-end: 0.5em;
+  margin-block-end: 1em;
 }
 
 .newLine {
   margin-block-start: 1em;
   margin-block-end: 1em;
+}
+
+hr{
+  margin-block-start: 1em;
+  margin-block-end: 0em;
 }
 
 @keyframes App-logo-spin {
