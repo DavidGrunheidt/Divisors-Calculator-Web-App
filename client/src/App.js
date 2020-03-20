@@ -26,7 +26,8 @@ class App extends Component {
   }
   
   submitNumber = async () => {
-    const response = await fetch('/api/divisors?number='+this.state.numberValue)
+    const endpoint = "https://divisors-calculator-api.herokuapp.com/api/divisors?number="
+    const response = await fetch(endpoint+this.state.numberValue)
     const body = await response.json()
 
     if (response.status !== 200) {
