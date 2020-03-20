@@ -7,7 +7,7 @@ const divisorsCalculator = require('./divisorsCalculator')
 const port = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: 'https://divisors-calculator-web.herokuapp.com/'
+  origin: 'https://divisors-calculator-web.herokuapp.com'
 }));
 
 app.get('/api/divisors', (req, res) => {
