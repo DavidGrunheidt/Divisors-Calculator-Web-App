@@ -16,6 +16,7 @@ nodejs -v
 npm -v
 ```
 Navegue até o diretorio raiz do projeto.
+Verifique que você está na branch master.
 Instale as dependencias e inicie o projeto:
 ```sh
 sudo npm install
