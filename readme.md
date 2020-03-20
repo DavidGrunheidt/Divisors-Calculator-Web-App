@@ -53,6 +53,8 @@ Se o cliente mongo estiver conectado, fazemos uma ***query na collection "number
 
 ***Caso o cliente mongo não estiver conectado***, realizamos o calculo dos divisores e respondemos ao request sem realizar a inserção destes na collection.
 
+Vale salientar que, também enviamos de volta o número solicitado e se ele é primo (pois o front end vai precisar guardar essas informaçoes).
+
 De volta ao ***front-end***, ao recebermos a resposta, guardamos ela dentro do estado do componente App, no array de resultados "results" (acessivel em this.state.results). Este array de resultados é util, pois podemos ***salvar os resultados obtidos anteriormente***, renderizando todos estes mais o novo resultado através de um processo de mapping. 
 
 É importante citar que também ***verificamos se o número no textLabel já foi calculado anteriormente***, desabilitando o botão de calcular caso sim. 
