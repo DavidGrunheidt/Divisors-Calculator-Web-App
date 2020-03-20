@@ -21,7 +21,8 @@ class App extends Component {
 
   getButtonSubmit = () => {
     let isValidInt = /^\d+$/.test(this.state.numberValue)
-    if (isValidInt) {
+    let alreadyCalculated = this.state.results.some(result => result.reqNumber === parseInt(this.state.numberValue))
+    if (isValidInt && !alreadyCalculated) {
       return <Button variant="contained" color="secondary" onClick={ this.handleSubmitButtonClick }>Calcular</Button>
     } else {
       return <Button variant="contained" disabled>Calcular</Button>

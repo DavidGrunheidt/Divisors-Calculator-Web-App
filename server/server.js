@@ -48,10 +48,6 @@ const dbName = 'desafiobridge';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 client.connect(err => { assert.equal(null, err)});
 
-function isConnectedToMongo() {
-  return true
-}
-
 const findDocuments = function(collectionName, filter, callback) {
   client.db(dbName).collection(collectionName).find(filter).toArray(function(err, docs) {
     assert.equal(err, null);
@@ -67,4 +63,8 @@ const insertDocuments = function(docs, collectionName) {
     assert.equal(docs.length, result.ops.length);
     console.log("Inserted "+docs.length+" documents into the collection");
   });
+}
+
+function isConnectedToMongo() {
+  return true
 }
