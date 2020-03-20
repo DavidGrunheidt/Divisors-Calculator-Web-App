@@ -1,9 +1,14 @@
 const express = require('express');
 
 const app = express();
+const cors = require('cors');
 const mongoClient = require('./mongodb')
 const divisorsCalculator = require('./divisorsCalculator')
 const port = process.env.PORT || 5000;
+
+app.use(cors({
+  origin: 'https://divisors-calculator-web.herokuapp.com/'
+}));
 
 app.get('/api/divisors', (req, res) => {
   let reqNumber = parseInt(req.query.number)

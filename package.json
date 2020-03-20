@@ -7,11 +7,12 @@
     "client-prod": "cd client && npm start",
     "server-prod": "cd server && node server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client-dev\"",
-    "build": "npm install", 
+    "build": "npm install",
     "start": "npm run server-prod"
   },
   "dependencies": {
     "@material-ui/core": "^1.5.1",
+    "cors": "^2.8.5",
     "express": "^4.16.2",
     "mongodb": "^3.5.5",
     "react": "^16.13.0",
