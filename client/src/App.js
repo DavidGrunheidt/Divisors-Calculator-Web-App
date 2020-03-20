@@ -37,12 +37,12 @@ class App extends Component {
   }
 
   isValidInt(number) {
-    return /^\d+$/.test(number)
+    return /^\d+$/.test(number) && parseInt(number) !== 0
   }
 
   renderTextField = () => {
     let maybeParsed = parseInt(this.state.numberValue)
-    if (maybeParsed < 0 || maybeParsed >= 1e8) {
+    if (maybeParsed < 1 || maybeParsed >= 1e8) {
       return <TextField error id="standard-error-helper-text" label="Erro" helperText="Número deve ser > 0 e < 10^8." onChange={ this.handleInputNumberChange }/>
     } else {
       return <TextField id="standard-basic" label="Insira um número inteiro" onChange={ this.handleInputNumberChange } />

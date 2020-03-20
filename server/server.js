@@ -8,7 +8,7 @@ const port = process.env.PORT || 5000;
 app.get('/api/divisors', (req, res) => {
   let reqNumber = parseInt(req.query.number)
 
-  if (reqNumber < 0 || reqNumber > 1e8) {
+  if (reqNumber < 1 || reqNumber > 1e8) {
     res.status(404).send('Error, number must be > 0 and < 10^8)')
   } else {
     let isPrime = false
