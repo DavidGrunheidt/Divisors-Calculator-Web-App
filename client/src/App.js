@@ -2,31 +2,28 @@ import React, {Component} from 'react';
 import bridge_logo from './bridge_logo.png';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './App.css';
 
 class App extends Component {
   state = {
     reqResponse: undefined,
     numberValue: undefined,
-    results: []
+    results: [],
+    waitingResp: false
   };
 
   handleInputNumberChange = (e) => { this.setState({ numberValue: e.target.value }) }
 
   handleSubmitButtonClick = () => {
-    this.submitNumber()
-    .then(res => this.setState(prevState => ({ results: [...prevState.results, res.express] })))
-    .catch(err => console.log(err));
-  }
+    this.setState({ waitingResp: true })
 
-  getButtonSubmit = () => {
-    let isValidInt = /^\d+$/.test(this.state.numberValue)
-    let alreadyCalculated = this.state.results.some(result => result.reqNumber === parseInt(this.state.numberValue))
-    if (isValidInt && !alreadyCalculated) {
-      return <Button variant="contained" color="secondary" onClick={ this.handleSubmitButtonClick }>Calcular</Button>
-    } else {
-      return <Button variant="contained" disabled>Calcular</Button>
-    }
+    this.submitNumber()
+    .then(res => this.setState(prevState => ({ 
+      results: [...prevState.results, res.express],
+      waitingResp: false
+     })))
+    .catch(err => console.log(err));
   }
   
   submitNumber = async () => {
@@ -38,6 +35,34 @@ class App extends Component {
     }
 
     return body
+  }
+
+  isValidInt(number) {
+    return /^\d+$/.test(number)
+  }
+
+  renderTextField = () => {
+    let maybeParsed = parseInt(this.state.numberValue)
+    if (maybeParsed < 0 || maybeParsed >= 1e8) {
+      return <TextField error id="standard-error-helper-text" label="Erro" helperText="Número deve ser > 0 e < 10^8." onChange={ this.handleInputNumberChange }/>
+    } else {
+      return <TextField id="standard-basic" label="Insira um número inteiro" onChange={ this.handleInputNumberChange } />
+    }
+  }
+
+  renderButtonSubmit = () => {
+    if (this.state.waitingResp) {
+      return <CircularProgress />
+    } else {
+      let numberParsed = parseInt(this.state.numberValue)
+      let alreadyCalculated = this.state.results.some(result => result.reqNumber === numberParsed)
+    
+      if (this.isValidInt(this.state.numberValue) && numberParsed < 1e8 && !alreadyCalculated) {
+        return <Button variant="contained" color="secondary" onClick={ this.handleSubmitButtonClick }>Calcular</Button>
+      } else {
+        return <Button variant="contained" disabled>{alreadyCalculated ? "Já calculado" : "Calcular"}</Button>
+      }
+    }
   }
 
   renderResponse = () => {
@@ -67,9 +92,9 @@ class App extends Component {
         </header>
         <div className="App-body">
           <p className="App-intro">Calcule já os divisores de um número:</p>
-          <TextField id="standard-basic" label="Insira um número inteiro" onChange={ this.handleInputNumberChange } />
+          { this.renderTextField() }
           <p className="newLine"/>
-          { this.getButtonSubmit() }
+          { this.renderButtonSubmit() }
           { this.renderResponse() }
         </div>
       </div>
