@@ -8,7 +8,7 @@
     "server-prod": "cd server && node server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server-dev\" \"npm run client-dev\"",
     "build": "npm install", 
-    "start": "npm run client-prod"
+    "start": "npm run server-prod"
   },
   "dependencies": {
     "@material-ui/core": "^1.5.1",
