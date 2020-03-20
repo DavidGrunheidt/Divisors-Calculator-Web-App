@@ -1,3 +1,5 @@
+Aplicação disponivel em: https://divisors-calculator-web.herokuapp.com/
+
 ### Instalação e execução
 
 Este projeto requer [Node.js](https://nodejs.org/) para ser executado.
