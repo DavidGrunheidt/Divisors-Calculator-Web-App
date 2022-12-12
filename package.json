@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.5.1",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "mongodb": "^3.5.5",
     "react": "^16.13.0",
     "react-dom": "^16.13.0"
